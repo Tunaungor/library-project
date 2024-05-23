@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OduncRepository extends JpaRepository<Odunc, Long> {
+    Odunc findByKid(Long kid);
 }

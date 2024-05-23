@@ -17,7 +17,7 @@ import java.util.Set;
 public class Odunc {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long kid;
 
 
 

@@ -33,4 +33,6 @@ public class OduncServiceImpl implements OduncService {
     public void deleteOdunc(Long id) {
         oduncRepository.deleteById(id);
     }
-}
+
+
+    }
