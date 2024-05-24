@@ -17,7 +17,7 @@ public class RezervasyonController {
     @Autowired
     private RezervasyonService rezervasyonService;
 
-    @GetMapping
+    @GetMapping("/getir")
     public ResponseEntity<List<Rezervasyon>> getAllRezervasyon() {
         List<Rezervasyon> rezervasyonList = rezervasyonService.getAllRezervasyon();
         return new ResponseEntity<>(rezervasyonList, HttpStatus.OK);
@@ -30,7 +30,7 @@ public class RezervasyonController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping
+    @PostMapping("/post")
     public ResponseEntity<Rezervasyon> saveRezervasyon(@RequestBody Rezervasyon rezervasyon) {
         Rezervasyon savedRezervasyon = rezervasyonService.saveRezervasyon(rezervasyon);
         return new ResponseEntity<>(savedRezervasyon, HttpStatus.CREATED);

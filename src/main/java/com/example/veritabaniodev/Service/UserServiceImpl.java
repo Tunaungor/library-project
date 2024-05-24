@@ -1,6 +1,7 @@
 package com.example.veritabaniodev.Service;
 
 import com.example.veritabaniodev.Dto.UserDto;
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Entity.User;
 import com.example.veritabaniodev.Repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,4 +52,5 @@ public class UserServiceImpl implements UserService{
         }
         return null;
     }
+
 }

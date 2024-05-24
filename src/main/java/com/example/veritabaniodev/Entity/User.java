@@ -1,5 +1,6 @@
 package com.example.veritabaniodev.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class User
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = true)
     private Long id;
 
     @Column(nullable=false)
@@ -32,17 +34,18 @@ public class User
     @Column(nullable=false)
     private String password;
 
-    @Column(nullable=false)
+    @Column(nullable=true)
     private Long yas;
 
-    @Column(nullable=false)
+    @Column(nullable=true)
     private Long telefon;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user")
     private List<Rezervasyon> rezervasyonlar;
 
 
-
+    @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private UserAdres userAdres;
 

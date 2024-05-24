@@ -1,5 +1,6 @@
 package com.example.veritabaniodev.Service;
 
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Entity.YayinEvi;
 import com.example.veritabaniodev.Repo.YayinEviRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,8 @@ public class YayinEviServiceImpl implements YayinEviService {
     @Override
     public void deleteYayinEvi(Long id) {
         yayinEviRepository.deleteById(id);
+    }
+    public YayinEvi updateYayınEvi(YayinEvi yayinEvi) {
+        return yayinEviRepository.save(yayinEvi);
     }
 }

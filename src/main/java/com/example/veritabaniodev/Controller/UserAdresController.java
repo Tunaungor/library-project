@@ -1,7 +1,9 @@
 package com.example.veritabaniodev.Controller;
 
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Entity.UserAdres;
 import com.example.veritabaniodev.Service.UserAdresService;
+import com.example.veritabaniodev.Service.UserAdresServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +18,9 @@ public class UserAdresController {
 
     @Autowired
     private UserAdresService userAdresService;
+    private UserAdresServiceImpl  UserAdresImpl;
 
-    @GetMapping
+    @GetMapping("/getir")
     public ResponseEntity<List<UserAdres>> getAllUserAdres() {
         List<UserAdres> userAdresList = userAdresService.getAllUserAdres();
         return new ResponseEntity<>(userAdresList, HttpStatus.OK);
@@ -30,7 +33,7 @@ public class UserAdresController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping
+    @PostMapping("/post")
     public ResponseEntity<UserAdres> saveUserAdres(@RequestBody UserAdres userAdres) {
         UserAdres savedUserAdres = userAdresService.saveUserAdres(userAdres);
         return new ResponseEntity<>(savedUserAdres, HttpStatus.CREATED);
@@ -40,5 +43,10 @@ public class UserAdresController {
     public ResponseEntity<?> deleteUserAdres(@PathVariable("id") Long id) {
         userAdresService.deleteUserAdres(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<UserAdres> updateUserAdres(@PathVariable Long id, @RequestBody UserAdres userAdres) {
+        UserAdres updatedUserAdres = UserAdresImpl.updateUserAdres(userAdres);
+        return ResponseEntity.ok(updatedUserAdres);
     }
 }

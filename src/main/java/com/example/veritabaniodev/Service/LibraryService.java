@@ -2,6 +2,7 @@ package com.example.veritabaniodev.Service;
 
 import com.example.veritabaniodev.Entity.Gorevli;
 import com.example.veritabaniodev.Entity.Kitap;
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Entity.Odunc;
 import com.example.veritabaniodev.Repo.GorevliRepository;
 import com.example.veritabaniodev.Repo.KitapRepository;
@@ -37,6 +38,7 @@ public class LibraryService {
 
         System.out.println(kitap.getName() + " isimli kitap ödünç verilmiştir. Geriye " + kitap.getStok() + " adet kitap kalmıştır.");
     }
+
 
     @Transactional
     public void iadeEt(Long kid) {

@@ -1,6 +1,7 @@
 package com.example.veritabaniodev.Entity;
 
 import com.example.veritabaniodev.Dto.KitapDto;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,24 +18,27 @@ import java.util.Set;
 public class Kitap {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = true)
     private Long kid;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int sayfaSayisi;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Date yayinTarihi;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int stok;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "tur_id", nullable = false)
+    @JoinColumn(name = "tur_id", nullable = true)
     private Tur tur;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "kitap_yazar",
@@ -43,18 +47,26 @@ public class Kitap {
     )
     private Set<Yazar> yazarlar;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "gorevli_id", nullable = false)
+    @JoinColumn(name = "gorevli_id", nullable = true)
     private Gorevli gorevli;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "yayin_evi_id", nullable = false)
+    @JoinColumn(name = "yayin_evi_id", nullable = true)
     private YayinEvi yayinEvi;
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "odunc_id")
+    @JoinColumn(name = "odunc_id" ,nullable = true)
     private Odunc odunc; // Bu satırı ekledik
 
+    @JsonIgnore
+    @OneToOne(mappedBy = "kitap")
+    private KitapKonum kitapKonum;
+
+    @JsonIgnore
     @OneToOne(mappedBy = "kitap")
     private Rezervasyon rezervasyon;
 

@@ -23,11 +23,11 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @PostMapping("/register")
-    public ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
-        userService.registerUser(userDto);
-        return ResponseEntity.ok("User registered successfully.");
-    }
+//    @PostMapping("/register")
+//    public ResponseEntity<String> registerUser(@RequestBody UserDto userDto) {
+//        userService.registerUser(userDto);
+//        return ResponseEntity.ok("User registered successfully.");
+//    }
 
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String email, @RequestParam String password) {
@@ -67,7 +67,7 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-    @PostMapping("/addAll")
+    @PostMapping("/register")
     public ResponseEntity<String> addAllUsers(@RequestBody List<UserDto> userDtoList) {
         List<User> userList = new ArrayList<>();
         for (UserDto userDto : userDtoList) {
@@ -75,6 +75,8 @@ public class UserController {
             user.setName(userDto.getFirstName() + " " + userDto.getLastName());
             user.setEmail(userDto.getEmail());
             user.setPassword(userDto.getPassword());
+            user.setYas(userDto.getYas());
+            user.setTelefon(userDto.getTelefon());
             userList.add(user);
         }
         userService.addAllUsers(userList);

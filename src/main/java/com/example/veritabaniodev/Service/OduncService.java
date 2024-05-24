@@ -11,4 +11,5 @@ public interface OduncService {
     Odunc saveOdunc(Odunc odunc);
     void deleteOdunc(Long id);
 
+
 }

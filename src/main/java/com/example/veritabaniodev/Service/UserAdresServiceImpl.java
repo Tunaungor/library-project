@@ -1,5 +1,6 @@
 package com.example.veritabaniodev.Service;
 
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Entity.UserAdres;
 import com.example.veritabaniodev.Repo.UserAdresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,9 @@ public class UserAdresServiceImpl implements UserAdresService {
     @Override
     public void deleteUserAdres(Long id) {
         userAdresRepository.deleteById(id);
+    }
+
+    public UserAdres updateUserAdres(UserAdres userAdres) {
+        return userAdresRepository.save(userAdres);
     }
 }

@@ -1,7 +1,10 @@
 package com.example.veritabaniodev.Controller;
 
 import com.example.veritabaniodev.Entity.Kitap;
+import com.example.veritabaniodev.Entity.KitapKonum;
+import com.example.veritabaniodev.Service.KitapKonumServiceImpl;
 import com.example.veritabaniodev.Service.KitapService;
+import com.example.veritabaniodev.Service.KitapServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +19,9 @@ public class KitapController {
 
     @Autowired
     private KitapService kitapService;
+    private KitapServiceImpl kitapServiceImpl;
 
-    @GetMapping
+    @GetMapping("/getir")
     public ResponseEntity<List<Kitap>> getAllKitap() {
         List<Kitap> kitapList = kitapService.getAllKitap();
         return new ResponseEntity<>(kitapList, HttpStatus.OK);
@@ -30,7 +34,7 @@ public class KitapController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping
+    @PostMapping("/post")
     public ResponseEntity<Kitap> saveKitap(@RequestBody Kitap kitap) {
         Kitap savedKitap = kitapService.saveKitap(kitap);
         return new ResponseEntity<>(savedKitap, HttpStatus.CREATED);
@@ -40,5 +44,10 @@ public class KitapController {
     public ResponseEntity<?> deleteKitap(@PathVariable("id") Long id) {
         kitapService.deleteKitap(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @PutMapping("/{name}")
+    public ResponseEntity<Kitap> updateKitap(@PathVariable Long id, @RequestBody Kitap kitap) {
+        Kitap updatedkitap = kitapServiceImpl.updateKitap(kitap);
+        return ResponseEntity.ok(updatedkitap);
     }
 }

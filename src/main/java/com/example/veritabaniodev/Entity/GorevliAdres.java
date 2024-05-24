@@ -1,6 +1,7 @@
 package com.example.veritabaniodev.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,6 +16,7 @@ public class GorevliAdres {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = true)
     private Long GorevliAdresId;
 
     private String mahalle;
@@ -25,6 +27,7 @@ public class GorevliAdres {
 
     private String apartman;
 
+    @JsonIgnore
     @OneToOne
     @JoinColumn(name = "gorevli_id")
     private Gorevli gorevli; // Gorevli ile ilişki

@@ -1,5 +1,6 @@
 package com.example.veritabaniodev.Service;
 
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Entity.Tur;
 import com.example.veritabaniodev.Repo.TurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,9 @@ public class TurServiceImpl implements TurService {
     @Override
     public void deleteTur(Long id) {
         turRepository.deleteById(id);
+    }
+
+    public Tur updateTur(Tur tur) {
+        return turRepository.save(tur);
     }
 }

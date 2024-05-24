@@ -1,6 +1,7 @@
 package com.example.veritabaniodev.Service;
 
 import com.example.veritabaniodev.Entity.Kitap;
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Repo.KitapRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,5 +33,8 @@ public class KitapServiceImpl implements KitapService {
     @Override
     public void deleteKitap(Long id) {
         kitapRepository.deleteById(id);
+    }
+    public Kitap updateKitap(Kitap kitap) {
+        return kitapRepository.save(kitap);
     }
 }

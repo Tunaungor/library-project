@@ -1,6 +1,7 @@
 package com.example.veritabaniodev.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,8 +18,8 @@ public class Gorevli {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "gorevli_id")
-    private Long GorevliId;
+    @Column(name = "gorevli_id" ,nullable = true)
+    private Long id;
 
     private String name;
 
@@ -32,9 +33,10 @@ public class Gorevli {
 
     private String sifre;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "gorevli", cascade = CascadeType.ALL)
     private GorevliAdres adres; // GorevliAdres ile ilişki
-
+    @JsonIgnore
     @OneToMany(mappedBy = "gorevli")
     private Set<Kitap> kitaplar;
 

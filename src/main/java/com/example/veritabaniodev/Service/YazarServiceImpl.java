@@ -1,5 +1,6 @@
 package com.example.veritabaniodev.Service;
 
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Entity.Yazar;
 import com.example.veritabaniodev.Repo.YazarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,10 @@ public class YazarServiceImpl implements YazarService {
     @Override
     public void deleteYazar(Long id) {
         yazarRepository.deleteById(id);
+    }
+
+
+    public Yazar updateYazar(Yazar yazar) {
+        return yazarRepository.save(yazar);
     }
 }

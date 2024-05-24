@@ -1,5 +1,6 @@
 package com.example.veritabaniodev.Service;
 
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Entity.YayineviAdres;
 import com.example.veritabaniodev.Repo.YayineviAdresRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class YayineviAdresServiceImpl implements YayinEviAdresService {
 
     @Override
     public YayineviAdres saveYayineviAdres(YayineviAdres yayineviAdres) {
+        return yayineviAdresRepository.save(yayineviAdres);
+    }
+    public YayineviAdres updateYayınEviAdres(YayineviAdres yayineviAdres) {
         return yayineviAdresRepository.save(yayineviAdres);
     }
 

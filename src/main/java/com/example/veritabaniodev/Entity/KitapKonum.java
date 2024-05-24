@@ -1,6 +1,7 @@
 package com.example.veritabaniodev.Entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,11 +16,19 @@ public class KitapKonum {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = true)
+    private Long id;
+
     private Long katNo;
 
-    private String OdaNo;
+    private Long OdaNo;
 
-    private String RafNo;
+    private Long RafNo;
 
 
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "kitap_konum_id")
+    private Kitap kitap;
 }
+

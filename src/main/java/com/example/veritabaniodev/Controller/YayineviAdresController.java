@@ -1,7 +1,9 @@
 package com.example.veritabaniodev.Controller;
 
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Entity.YayineviAdres;
 import com.example.veritabaniodev.Service.YayinEviAdresService;
+import com.example.veritabaniodev.Service.YayineviAdresServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,11 +18,17 @@ public class YayineviAdresController {
 
     @Autowired
     private YayinEviAdresService yayineviAdresService;
+    private YayineviAdresServiceImpl yayineviAdresImpl;
 
-    @GetMapping
+    @GetMapping("/getir")
     public ResponseEntity<List<YayineviAdres>> getAllYayineviAdres() {
         List<YayineviAdres> yayineviAdresList = yayineviAdresService.getAllYayineviAdres();
         return new ResponseEntity<>(yayineviAdresList, HttpStatus.OK);
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<YayineviAdres> updateYayinEviAdres(@PathVariable Long id, @RequestBody YayineviAdres yayineviAdres) {
+        YayineviAdres updatedYayinEviAdres = yayineviAdresImpl.updateYayınEviAdres(yayineviAdres);
+        return ResponseEntity.ok(updatedYayinEviAdres);
     }
 
     @GetMapping("/{id}")
@@ -30,7 +38,7 @@ public class YayineviAdresController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping
+    @PostMapping("/post")
     public ResponseEntity<YayineviAdres> saveYayineviAdres(@RequestBody YayineviAdres yayineviAdres) {
         YayineviAdres savedYayineviAdres = yayineviAdresService.saveYayineviAdres(yayineviAdres);
         return new ResponseEntity<>(savedYayineviAdres, HttpStatus.CREATED);

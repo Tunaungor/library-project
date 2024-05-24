@@ -1,5 +1,6 @@
 package com.example.veritabaniodev.Service;
 
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Entity.Rezervasyon;
 import com.example.veritabaniodev.Repo.RezervasyonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,8 @@ public class RezervasyonServiceImpl implements RezervasyonService {
     @Override
     public void deleteRezervasyon(Long id) {
         rezervasyonRepository.deleteById(id);
+    }
+    public Rezervasyon updateRezervasyon(Rezervasyon rezervasyon) {
+        return rezervasyonRepository.save(rezervasyon);
     }
 }

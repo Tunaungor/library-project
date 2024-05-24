@@ -1,7 +1,9 @@
 package com.example.veritabaniodev.Controller;
 
+import com.example.veritabaniodev.Entity.KitapKonum;
 import com.example.veritabaniodev.Entity.YazarAdres;
 import com.example.veritabaniodev.Service.YazarAdresService;
+import com.example.veritabaniodev.Service.YazarAdresServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +18,9 @@ public class YazarAdresController {
 
     @Autowired
     private YazarAdresService yazarAdresService;
+    private YazarAdresServiceImpl yazarAdresImpl;
 
-    @GetMapping
+    @GetMapping("/getir")
     public ResponseEntity<List<YazarAdres>> getAllYazarAdres() {
         List<YazarAdres> yazarAdresList = yazarAdresService.getAllYazarAdres();
         return new ResponseEntity<>(yazarAdresList, HttpStatus.OK);
@@ -29,8 +32,13 @@ public class YazarAdresController {
         return yazarAdres.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<YazarAdres> updateYazarAdres(@PathVariable Long id, @RequestBody YazarAdres yazarAdres) {
+        YazarAdres updatedYazarAdres = yazarAdresImpl.updateYazarAdres(yazarAdres);
+        return ResponseEntity.ok(updatedYazarAdres);
+    }
 
-    @PostMapping
+    @PostMapping("post")
     public ResponseEntity<YazarAdres> saveYazarAdres(@RequestBody YazarAdres yazarAdres) {
         YazarAdres savedYazarAdres = yazarAdresService.saveYazarAdres(yazarAdres);
         return new ResponseEntity<>(savedYazarAdres, HttpStatus.CREATED);
