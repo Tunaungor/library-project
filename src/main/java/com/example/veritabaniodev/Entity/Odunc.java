@@ -31,20 +31,20 @@ public class Odunc {
     @Column(nullable=false)
     private Long telefon;
 
-    @Column(nullable=true)
+    @Column(nullable=false)
     private boolean karaListe;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "kitap_id", nullable = true)
+    @JoinColumn(name = "kitap_id", nullable = true )
     private Kitap kitap;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "odunc")
+    @OneToMany(mappedBy = "odunc" )
     private Set<Kitap> kitaplar;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = true)
+    @JoinColumn(name = "user_id", nullable = true )
     private User user; // "user" özelliğinin adını "user" olarak güncelledik
 }

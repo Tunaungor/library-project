@@ -14,7 +14,7 @@ public class LibraryController {
     @Autowired
     private LibraryService libraryService;
 
-    @PostMapping("/oduncVer/{kitapId}")
+    @PostMapping("/oduncAl/{kitapId}")
     public void oduncVer(@PathVariable Long kitapId) {
         libraryService.oduncVer(kitapId);
     }

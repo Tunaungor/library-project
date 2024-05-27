@@ -57,7 +57,7 @@ public class Kitap {
     @JoinColumn(name = "yayin_evi_id", nullable = true)
     private YayinEvi yayinEvi;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "odunc_id" ,nullable = true)
     private Odunc odunc; // Bu satırı ekledik

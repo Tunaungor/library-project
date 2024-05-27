@@ -34,10 +34,10 @@ public class User
     @Column(nullable=false)
     private String password;
 
-    @Column(nullable=true)
+    @Column(nullable=false)
     private Long yas;
 
-    @Column(nullable=true)
+    @Column(nullable=false)
     private Long telefon;
 
     @JsonIgnore
